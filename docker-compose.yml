@@ -1,0 +1,27 @@
+version: '3.3'
+services:
+  gatsby_wordress:
+    depends_on:
+      - gatsby_wordpress_mysql
+    image: dantheman/wordpress
+    restart: always
+    volumes:
+      - ./wordpress:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: gatsby_wordpress_mysql:3306
+      WORDPRESS_DB_PASSWORD: admin
+    ports:
+      - 80:80
+      - 443:443
+  gatsby_wordpress_mysql:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - gatsby_wordpress_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+
+volumes:
+  gatsby_wordpress_data:
