@@ -3,7 +3,7 @@ services:
   gatsby_wordress:
     depends_on:
       - gatsby_wordpress_mysql
-    image: dantheman/wordpress
+    image: dan/wordpress
     restart: always
     volumes:
       - ./wordpress:/var/www/html
